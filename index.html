@@ -1,0 +1,1215 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>TKA Bahasa Indonesia — SMA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;0,600;0,700;1,500&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #faf6ec;
+    --paper-2: #f3ecdb;
+    --line: #c3d8e4;
+    --margin: #b8483f;
+    --ink: #26241f;
+    --ink-soft: #5b574c;
+    --accent: #1f5c4d;
+    --accent-soft: #e4efe9;
+    --gold: #b9822f;
+    --gold-soft: #f4e7cf;
+    --wrong: #b8483f;
+    --wrong-soft: #f7e6e3;
+    --card: #fffdf7;
+    --shadow: rgba(38, 36, 31, 0.14);
+    --focus: #1f5c4d;
+    box-sizing: border-box;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper: #1b2320;
+      --paper-2: #202a26;
+      --line: #2c3d38;
+      --margin: #c9695f;
+      --ink: #ece7da;
+      --ink-soft: #b7b0a0;
+      --accent: #6fbfa2;
+      --accent-soft: #24352f;
+      --gold: #d9ac5c;
+      --gold-soft: #362c1c;
+      --wrong: #d98a80;
+      --wrong-soft: #3a2624;
+      --card: #212b27;
+      --shadow: rgba(0, 0, 0, 0.4);
+      --focus: #6fbfa2;
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper: #1b2320;
+    --paper-2: #202a26;
+    --line: #2c3d38;
+    --margin: #c9695f;
+    --ink: #ece7da;
+    --ink-soft: #b7b0a0;
+    --accent: #6fbfa2;
+    --accent-soft: #24352f;
+    --gold: #d9ac5c;
+    --gold-soft: #362c1c;
+    --wrong: #d98a80;
+    --wrong-soft: #3a2624;
+    --card: #212b27;
+    --shadow: rgba(0, 0, 0, 0.4);
+    --focus: #6fbfa2;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-padding-top: env(safe-area-inset-top, 0px); }
+  html, body { height: 100%; }
+  body {
+    margin: 0;
+    font-family: 'Inter', system-ui, sans-serif;
+    color: var(--ink);
+    background:
+      repeating-linear-gradient(var(--paper) 0px, var(--paper) 33px, var(--line) 34px),
+      var(--paper);
+    background-attachment: local;
+    min-height: 100%;
+    line-height: 1.5;
+  }
+  .margin-rule {
+    position: fixed;
+    top: 0; bottom: 0; left: 46px;
+    width: 2px;
+    background: var(--margin);
+    opacity: 0.55;
+    z-index: 0;
+  }
+  @media (max-width: 640px) {
+    .margin-rule { left: 22px; }
+  }
+  #app {
+    position: relative;
+    z-index: 1;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 28px 24px 60px 64px;
+  }
+  @media (max-width: 640px) {
+    #app { padding: 20px 16px 48px 36px; }
+  }
+  h1, h2, h3 { font-family: 'Lora', serif; margin: 0; color: var(--ink); }
+  .eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12.5px;
+    letter-spacing: 0.02em;
+    color: var(--accent);
+    font-weight: 600;
+  }
+  button {
+    font-family: inherit;
+    cursor: pointer;
+  }
+  button:focus-visible, [tabindex]:focus-visible, input:focus-visible {
+    outline: 3px solid var(--focus);
+    outline-offset: 2px;
+  }
+  .btn-primary {
+    background: var(--accent);
+    color: var(--paper);
+    border: none;
+    padding: 14px 28px;
+    border-radius: 3px;
+    font-size: 16px;
+    font-weight: 600;
+    box-shadow: 2px 2px 0 var(--shadow);
+    transition: transform 0.12s ease;
+  }
+  .btn-primary:hover { transform: translate(-1px, -1px); }
+  .btn-primary:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+  .btn-ghost {
+    background: transparent;
+    border: 1.5px solid var(--ink-soft);
+    color: var(--ink);
+    padding: 12px 22px;
+    border-radius: 3px;
+    font-size: 15px;
+    font-weight: 600;
+  }
+  .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* ---------- START SCREEN ---------- */
+  .stamp {
+    display: inline-block;
+    border: 2.5px solid var(--margin);
+    color: var(--margin);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    padding: 4px 10px;
+    border-radius: 3px;
+    transform: rotate(-2deg);
+    margin-bottom: 18px;
+  }
+  .cover-title {
+    font-size: clamp(30px, 5vw, 44px);
+    line-height: 1.15;
+    margin-bottom: 8px;
+  }
+  .cover-sub {
+    color: var(--ink-soft);
+    font-size: 17px;
+    max-width: 60ch;
+    margin-bottom: 28px;
+  }
+  .cover-meta {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 14px;
+    margin: 26px 0 32px;
+    max-width: 640px;
+  }
+  .meta-box {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 14px 16px;
+    box-shadow: 2px 2px 0 var(--shadow);
+  }
+  .meta-box .num { font-family: 'Lora', serif; font-size: 24px; font-weight: 700; color: var(--accent); }
+  .meta-box .lbl { font-size: 12.5px; color: var(--ink-soft); margin-top: 2px; }
+  .name-field { margin-bottom: 26px; max-width: 420px; }
+  .name-field label { display: block; font-size: 13.5px; color: var(--ink-soft); margin-bottom: 6px; }
+  .name-field input {
+    width: 100%;
+    padding: 12px 14px;
+    border-radius: 3px;
+    border: 1.5px solid var(--line);
+    background: var(--card);
+    color: var(--ink);
+    font-size: 15px;
+  }
+  .rules-list { margin: 0 0 30px; padding-left: 20px; color: var(--ink-soft); font-size: 14.5px; max-width: 62ch; }
+  .rules-list li { margin-bottom: 6px; }
+
+  /* ---------- EXAM HEADER ---------- */
+  .exam-header {
+    position: sticky;
+    top: 0;
+    z-index: 5;
+    background: var(--paper);
+    padding-top: calc(env(safe-area-inset-top, 0px) + 10px);
+    padding-bottom: 12px;
+    margin: -28px -24px 18px -64px;
+    padding-left: 64px;
+    padding-right: 24px;
+    border-bottom: 1.5px dashed var(--line);
+  }
+  @media (max-width: 640px) {
+    .exam-header { margin: -20px -16px 16px -36px; padding-left: 36px; padding-right: 16px; }
+  }
+  .exam-header-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+  .timer {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 600;
+    font-size: 17px;
+    padding: 7px 14px;
+    border-radius: 3px;
+    background: var(--card);
+    border: 1.5px solid var(--line);
+  }
+  .timer.low { color: var(--wrong); border-color: var(--wrong); background: var(--wrong-soft); }
+  .progress-text { font-size: 13.5px; color: var(--ink-soft); }
+  .nav-toggle { display: none; }
+  @media (max-width: 780px) {
+    .nav-toggle { display: inline-block; }
+  }
+
+  /* ---------- LAYOUT ---------- */
+  .exam-body { display: grid; grid-template-columns: 1fr 220px; gap: 24px; align-items: start; }
+  @media (max-width: 780px) {
+    .exam-body { grid-template-columns: 1fr; }
+  }
+  .navigator {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    padding: 16px;
+    position: sticky;
+    top: 110px;
+    box-shadow: 2px 2px 0 var(--shadow);
+  }
+  @media (max-width: 780px) {
+    .navigator { position: static; display: none; }
+    .navigator.open { display: block; }
+  }
+  .navigator h3 { font-size: 14px; margin-bottom: 10px; }
+  .nav-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; }
+  .nav-dot {
+    aspect-ratio: 1;
+    border-radius: 3px;
+    border: 1.5px solid var(--line);
+    background: transparent;
+    color: var(--ink-soft);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    font-weight: 600;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .nav-dot.answered { background: var(--accent-soft); border-color: var(--accent); color: var(--accent); }
+  .nav-dot.current { background: var(--accent); color: var(--paper); border-color: var(--accent); }
+  .nav-legend { margin-top: 12px; font-size: 12px; color: var(--ink-soft); display: flex; flex-direction: column; gap: 5px; }
+  .legend-dot { display: inline-block; width: 10px; height: 10px; border-radius: 2px; margin-right: 6px; vertical-align: middle; }
+
+  /* ---------- QUESTION CARD ---------- */
+  .qcard {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    padding: 26px 26px 22px;
+    box-shadow: 3px 3px 0 var(--shadow);
+    min-height: 320px;
+  }
+  @media (max-width: 640px) {
+    .qcard { padding: 20px 16px 18px; }
+  }
+  .qtags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px; }
+  .tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11.5px;
+    font-weight: 600;
+    padding: 4px 9px;
+    border-radius: 20px;
+    letter-spacing: 0.02em;
+  }
+  .tag.type { background: var(--accent-soft); color: var(--accent); }
+  .tag.level-lots { background: var(--gold-soft); color: var(--gold); }
+  .tag.level-mots { background: #e6e9f5; color: #4a548f; }
+  :root[data-theme="dark"] .tag.level-mots { background: #2a2e46; color: #a9b2e8; }
+  @media (prefers-color-scheme: dark) {
+    .tag.level-mots { background: #2a2e46; color: #a9b2e8; }
+  }
+  .tag.level-hots { background: var(--wrong-soft); color: var(--wrong); }
+  .stimulus {
+    background: var(--paper-2);
+    border-left: 3px solid var(--margin);
+    padding: 14px 18px;
+    border-radius: 3px;
+    font-size: 15px;
+    line-height: 1.65;
+    margin-bottom: 18px;
+    white-space: pre-line;
+    font-family: 'Lora', serif;
+    color: var(--ink);
+  }
+  .qtext { font-size: 17px; font-weight: 600; margin-bottom: 18px; line-height: 1.5; }
+  .options { display: flex; flex-direction: column; gap: 10px; margin-bottom: 6px; }
+  .opt {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    border: 1.5px solid var(--line);
+    border-radius: 5px;
+    padding: 12px 14px;
+    background: var(--paper);
+    font-size: 15px;
+    text-align: left;
+    width: 100%;
+  }
+  .opt:hover { border-color: var(--accent); }
+  .opt.selected { border-color: var(--accent); background: var(--accent-soft); }
+  .opt .marker {
+    flex: 0 0 auto;
+    width: 24px; height: 24px;
+    border-radius: 50%;
+    border: 1.5px solid var(--ink-soft);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--ink-soft);
+  }
+  .opt.selected .marker { background: var(--accent); border-color: var(--accent); color: var(--paper); }
+  .opt.pgk .marker { border-radius: 5px; }
+
+  .bs-table { width: 100%; border-collapse: collapse; font-size: 14.5px; }
+  .bs-row td { padding: 12px 8px; border-bottom: 1px dashed var(--line); vertical-align: middle; }
+  .bs-row .stmt { line-height: 1.5; }
+  .bs-btns { display: flex; gap: 8px; justify-content: flex-end; }
+  .bs-btn {
+    padding: 7px 14px;
+    border-radius: 20px;
+    border: 1.5px solid var(--line);
+    background: var(--paper);
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--ink-soft);
+    min-width: 64px;
+  }
+  .bs-btn.b.active { background: var(--accent-soft); border-color: var(--accent); color: var(--accent); }
+  .bs-btn.s.active { background: var(--wrong-soft); border-color: var(--wrong); color: var(--wrong); }
+
+  .qfooter { display: flex; justify-content: space-between; align-items: center; margin-top: 22px; gap: 10px; flex-wrap: wrap; }
+  .qfooter .right { display: flex; gap: 10px; }
+
+  /* ---------- RESULT SCREEN ---------- */
+  .score-hero {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    padding: 30px 26px;
+    box-shadow: 3px 3px 0 var(--shadow);
+    text-align: center;
+    margin-bottom: 24px;
+  }
+  .score-num { font-family: 'Lora', serif; font-size: 56px; font-weight: 700; color: var(--accent); }
+  .score-label { color: var(--ink-soft); font-size: 15px; margin-top: 4px; }
+  .sync-status {
+    margin-top: 14px;
+    font-size: 13px;
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--ink-soft);
+  }
+  .sync-status.ok { color: var(--accent); }
+  .sync-status.err { color: var(--wrong); }
+  .breakdown { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 14px; margin-bottom: 28px; }
+  .bd-card { background: var(--card); border: 1px solid var(--line); border-radius: 5px; padding: 14px 16px; }
+  .bd-card h4 { font-size: 12.5px; color: var(--ink-soft); margin: 0 0 8px; font-family: 'Inter', sans-serif; font-weight: 600; text-transform: none; }
+  .bar-bg { height: 8px; background: var(--paper-2); border-radius: 4px; overflow: hidden; margin-bottom: 6px; }
+  .bar-fill { height: 100%; background: var(--accent); border-radius: 4px; }
+  .bd-pct { font-family: 'JetBrains Mono', monospace; font-size: 13px; font-weight: 600; }
+
+  .review-item {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    padding: 18px 20px;
+    margin-bottom: 14px;
+  }
+  .review-head { display: flex; justify-content: space-between; gap: 10px; align-items: center; margin-bottom: 10px; flex-wrap: wrap; }
+  .review-head .qnum { font-family: 'JetBrains Mono', monospace; font-weight: 700; color: var(--ink-soft); }
+  .verdict { font-size: 12.5px; font-weight: 700; padding: 3px 10px; border-radius: 20px; }
+  .verdict.correct { background: var(--accent-soft); color: var(--accent); }
+  .verdict.wrong { background: var(--wrong-soft); color: var(--wrong); }
+  .verdict.partial { background: var(--gold-soft); color: var(--gold); }
+  .review-explain { font-size: 14px; color: var(--ink-soft); margin-top: 10px; padding-top: 10px; border-top: 1px dashed var(--line); line-height: 1.6; }
+  .review-answer-row { font-size: 14px; margin: 4px 0; }
+  .review-answer-row b { color: var(--ink); }
+
+  .top-actions { display: flex; gap: 12px; justify-content: center; margin-bottom: 30px; flex-wrap: wrap; }
+
+  .hidden { display: none !important; }
+  .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0,0,0,0); }
+</style>
+</head>
+<body>
+<div class="margin-rule" aria-hidden="true"></div>
+<div id="app"></div>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ======================= KONFIGURASI SPREADSHEET ======================= */
+  // Ganti dengan Web App URL dari Apps Script kamu (hasil deploy, akses "Anyone").
+  const SPREADSHEET_URL = "https://script.google.com/macros/s/AKfycbybietV5htuUqFJzkAf3rWdLlMPK6nlGgKHMJFtWUmJBQl1HBMp0fqJ2IlXrYrdtvaiVA/exec";
+  const SPREADSHEET_ENABLED = true; // set false untuk mematikan pengiriman ke spreadsheet
+
+  /* ======================= DATA SOAL ======================= */
+  const questions = [
+    // ---- A. Teks Eksposisi: Sampah Plastik ----
+    { id:1, type:'pg', level:'LOTS',
+      stimulus:"Sampah plastik telah menjadi ancaman serius bagi kelestarian lingkungan di Indonesia. Setiap tahun, jutaan ton plastik dibuang ke sungai dan laut, mencemari ekosistem perairan. Plastik membutuhkan waktu ratusan tahun untuk terurai secara alami. Akibatnya, biota laut seperti ikan dan penyu sering ditemukan mati akibat menelan atau terjerat sampah plastik. Selain itu, mikroplastik yang terurai dari plastik besar dapat masuk ke rantai makanan manusia melalui ikan yang dikonsumsi. Oleh karena itu, diperlukan kesadaran kolektif masyarakat untuk mengurangi penggunaan plastik sekali pakai serta mendukung program daur ulang agar dampak buruk sampah plastik dapat diminimalkan.",
+      question:"Ide pokok paragraf tersebut adalah...",
+      options:[{k:'A',t:'Plastik sulit terurai secara alami'},{k:'B',t:'Sampah plastik merupakan ancaman serius bagi lingkungan'},{k:'C',t:'Ikan dan penyu mati karena sampah plastik'},{k:'D',t:'Mikroplastik masuk ke rantai makanan manusia'},{k:'E',t:'Masyarakat harus mendaur ulang plastik'}],
+      answer:'B',
+      explanation:"Kalimat utama/ide pokok terletak di awal paragraf yang menyatakan sampah plastik sebagai ancaman serius bagi lingkungan; kalimat-kalimat lain adalah penjelas (kalimat fakta/pendukung)." },
+    { id:2, type:'pg', level:'MOTS', stimulus:null,
+      question:"Kalimat yang berupa opini dalam paragraf teks eksposisi tentang sampah plastik tersebut adalah...",
+      options:[{k:'A',t:'Sampah plastik dibuang ke sungai dan laut'},{k:'B',t:'Plastik membutuhkan waktu ratusan tahun untuk terurai'},{k:'C',t:'Diperlukan kesadaran kolektif masyarakat untuk mengurangi penggunaan plastik sekali pakai'},{k:'D',t:'Mikroplastik dapat masuk ke rantai makanan manusia'},{k:'E',t:'Ikan dan penyu ditemukan mati akibat sampah plastik'}],
+      answer:'C',
+      explanation:"Kalimat C berisi anjuran/rekomendasi penulis (bersifat subjektif), berbeda dengan kalimat lain yang menyatakan fakta yang dapat diverifikasi." },
+    { id:3, type:'pgk', level:'HOTS', stimulus:null,
+      question:"Manakah pernyataan berikut yang sesuai dengan ciri-ciri teks eksposisi berdasarkan paragraf tentang sampah plastik tersebut? (Jawaban bisa lebih dari satu)",
+      options:[{k:'A',t:'Berisi paparan informasi disertai data/fakta pendukung'},{k:'B',t:'Bertujuan meyakinkan pembaca dengan alur cerita fiksi'},{k:'C',t:'Menyajikan argumentasi berdasarkan sebab-akibat suatu fenomena'},{k:'D',t:'Menggunakan kalimat yang bersifat naratif kronologis seperti dongeng'},{k:'E',t:'Diakhiri dengan simpulan atau rekomendasi'}],
+      answer:['A','C','E'],
+      explanation:"Teks eksposisi memaparkan informasi berbasis fakta (A), menjelaskan hubungan sebab-akibat suatu fenomena (C), dan biasanya ditutup dengan simpulan/rekomendasi (E). Opsi B dan D adalah ciri teks naratif/fiksi." },
+    { id:4, type:'bs', level:'MOTS', stimulus:null,
+      question:"Tentukan Benar atau Salah setiap pernyataan berikut berdasarkan teks tentang sampah plastik!",
+      statements:[
+        {t:"Mikroplastik dapat mencemari rantai makanan manusia", a:true},
+        {t:"Sampah plastik dapat terurai dalam waktu singkat", a:false},
+        {t:"Teks tersebut menyarankan pengurangan plastik sekali pakai", a:true},
+        {t:"Teks tersebut menceritakan kisah seekor penyu", a:false},
+      ],
+      explanation:"Teks menyatakan mikroplastik masuk ke rantai makanan (benar), plastik butuh ratusan tahun terurai—bukan singkat (salah), teks menganjurkan pengurangan plastik sekali pakai (benar), dan teks bersifat eksposisi bukan narasi kisah penyu (salah)." },
+
+    // ---- B. Puisi ----
+    { id:5, type:'pg', level:'MOTS',
+      stimulus:"Senja di Pelabuhan\n\nKarang berdiri menantang ombak,\nCamar pulang menembus senja jingga,\nKapal-kapal bersandar lelah,\nMenyimpan rindu pada tanah seberang.\n\nAngin membawa bau garam dan luka,\nNelayan tua menghitung jaring yang koyak,\nNamun matanya tetap menyala,\nMenatap laut yang tak pernah menyerah.",
+      question:"Majas yang dominan digunakan pada larik \"Kapal-kapal bersandar lelah\" adalah...",
+      options:[{k:'A',t:'Metafora'},{k:'B',t:'Personifikasi'},{k:'C',t:'Hiperbola'},{k:'D',t:'Ironi'},{k:'E',t:'Simile'}],
+      answer:'B',
+      explanation:"Kata \"lelah\" adalah sifat manusia yang dilekatkan pada benda mati (kapal), sehingga termasuk majas personifikasi." },
+    { id:6, type:'pg', level:'HOTS', stimulus:null,
+      question:"Suasana yang tergambar dalam puisi \"Senja di Pelabuhan\" tersebut adalah...",
+      options:[{k:'A',t:'Riang dan penuh harapan tanpa beban'},{k:'B',t:'Sedih namun menyimpan semangat juang'},{k:'C',t:'Marah dan penuh amarah terhadap alam'},{k:'D',t:'Takut akan bahaya di lautan'},{k:'E',t:'Datar tanpa emosi tertentu'}],
+      answer:'B',
+      explanation:"Diksi seperti \"lelah\", \"luka\", \"jaring yang koyak\" menampilkan kesedihan, namun larik \"matanya tetap menyala\" dan \"laut yang tak pernah menyerah\" menunjukkan semangat juang yang tak padam." },
+    { id:7, type:'pgk', level:'HOTS', stimulus:null,
+      question:"Manakah unsur berikut yang terkandung dalam puisi \"Senja di Pelabuhan\"? (Jawaban bisa lebih dari satu)",
+      options:[{k:'A',t:'Citraan penglihatan (visual)'},{k:'B',t:'Citraan penciuman (olfaktori)'},{k:'C',t:'Rima akhir yang teratur sempurna pada setiap baris'},{k:'D',t:'Simbol ketangguhan melalui sosok nelayan tua'},{k:'E',t:'Penggunaan pantun bersajak a-b-a-b'}],
+      answer:['A','B','D'],
+      explanation:"Puisi menampilkan citraan visual (\"senja jingga\"), citraan penciuman (\"bau garam\"), dan simbol ketangguhan pada sosok nelayan tua. Puisi ini bukan pantun dan tidak berima teratur sempurna." },
+    { id:8, type:'bs', level:'LOTS', stimulus:null,
+      question:"Tentukan Benar atau Salah pernyataan berikut tentang puisi \"Senja di Pelabuhan\"!",
+      statements:[
+        {t:"Puisi menggambarkan suasana pagi hari", a:false},
+        {t:"\"Camar\" merupakan salah satu unsur alam yang digambarkan", a:true},
+        {t:"Nelayan tua digambarkan putus asa", a:false},
+        {t:"Puisi menggunakan citraan penciuman pada larik \"bau garam dan luka\"", a:true},
+      ],
+      explanation:"Judul dan diksi \"senja jingga\" menunjukkan waktu sore, bukan pagi. Camar disebutkan dalam puisi. Nelayan tua digambarkan tetap bersemangat (matanya menyala), bukan putus asa. Larik \"bau garam\" adalah citraan penciuman." },
+
+    // ---- C. Cerpen ----
+    { id:9, type:'pg', level:'LOTS',
+      stimulus:"Perempuan di Jendela\n\nSudah tiga bulan Mira duduk di kursi yang sama, menghadap jendela kamar kos yang sempit. Ia menatap orang-orang berlalu-lalang di jalan, seolah mencari sesuatu yang hilang. Sejak ayahnya meninggal, Mira berhenti bicara dengan siapa pun, termasuk ibunya sendiri. \"Kamu harus makan, Nak,\" kata ibunya pelan dari balik pintu, namun Mira hanya diam, matanya kosong menatap kaca jendela yang mulai berdebu. Tak ada yang tahu bahwa di balik diamnya, Mira sedang berperang dengan rasa bersalah yang tak kunjung reda.",
+      question:"Sudut pandang yang digunakan pengarang dalam kutipan cerpen tersebut adalah...",
+      options:[{k:'A',t:'Orang pertama pelaku utama'},{k:'B',t:'Orang pertama pelaku sampingan'},{k:'C',t:'Orang ketiga serba tahu'},{k:'D',t:'Orang ketiga pengamat'},{k:'E',t:'Campuran orang pertama dan ketiga'}],
+      answer:'C',
+      explanation:"Pengarang menggunakan nama tokoh (\"Mira\") dan mampu menjelaskan isi batin tokoh (\"sedang berperang dengan rasa bersalah\") yang tidak diketahui tokoh lain, ciri khas sudut pandang orang ketiga serba tahu." },
+    { id:10, type:'pg', level:'HOTS', stimulus:null,
+      question:"Konflik batin yang dialami tokoh Mira dalam kutipan cerpen tersebut adalah...",
+      options:[{k:'A',t:'Pertentangan dengan ibunya karena masalah ekonomi'},{k:'B',t:'Rasa bersalah yang belum terselesaikan atas kematian ayahnya'},{k:'C',t:'Ketakutan terhadap dunia luar yang ramai'},{k:'D',t:'Kekecewaan karena tidak diperhatikan ibunya'},{k:'E',t:'Kebingungan dalam menentukan pilihan hidup'}],
+      answer:'B',
+      explanation:"Kalimat penutup secara eksplisit menyebutkan Mira \"berperang dengan rasa bersalah\" terkait kematian ayahnya, menunjukkan konflik batin akibat rasa bersalah yang belum tuntas." },
+    { id:11, type:'pgk', level:'MOTS', stimulus:null,
+      question:"Unsur intrinsik apa saja yang tergambar jelas dalam kutipan cerpen \"Perempuan di Jendela\"? (Jawaban bisa lebih dari satu)",
+      options:[{k:'A',t:'Latar tempat berupa kamar kos'},{k:'B',t:'Watak tokoh Mira yang tertutup dan larut dalam duka'},{k:'C',t:'Alur maju yang menceritakan masa depan tokoh secara rinci'},{k:'D',t:'Amanat agar tidak larut dalam kesedihan berlebihan'},{k:'E',t:'Latar suasana yang riang gembira'}],
+      answer:['A','B','D'],
+      explanation:"Latar tempat jelas (kamar kos), watak Mira tergambar tertutup dan larut duka, serta tersirat amanat agar tidak berlarut dalam kesedihan. Tidak ada penceritaan masa depan tokoh, dan suasana yang tergambar muram, bukan riang." },
+    { id:12, type:'bs', level:'MOTS', stimulus:null,
+      question:"Tentukan Benar atau Salah pernyataan berikut berdasarkan kutipan cerpen \"Perempuan di Jendela\"!",
+      statements:[
+        {t:"Mira menutup diri setelah kepergian ayahnya", a:true},
+        {t:"Ibu Mira digambarkan bersikap acuh tak acuh", a:false},
+        {t:"Latar tempat kutipan adalah kamar kos yang sempit", a:true},
+        {t:"Mira aktif bercerita tentang perasaannya kepada ibunya", a:false},
+      ],
+      explanation:"Ibu Mira justru menunjukkan perhatian (\"Kamu harus makan, Nak\"), sedangkan Mira sendiri yang menutup diri dan diam, bukan bercerita aktif." },
+
+    // ---- D. Kalimat Efektif & Tata Bahasa ----
+    { id:13, type:'pg', level:'LOTS', stimulus:null,
+      question:"Kalimat berikut yang termasuk kalimat efektif adalah...",
+      options:[{k:'A',t:'Banyak murid-murid yang tidak hadir hari ini'},{k:'B',t:'Ia sangat cerdas sekali dalam menyelesaikan soal'},{k:'C',t:'Para hadirin dimohon untuk berdiri'},{k:'D',t:'Sekolah itu mengadakan lomba menulis cerpen antarkelas'},{k:'E',t:'Kepada semua siswa harap masuk ke dalam kelas'}],
+      answer:'D',
+      explanation:"Kalimat D tidak mengandung pemborosan kata (pleonasme) dan strukturnya jelas. A, B, C, E mengandung pengulangan makna yang tidak perlu (murid-murid+banyak, sangat+sekali, para+hadirin, kepada+harap+ke dalam)." },
+    { id:14, type:'pg', level:'MOTS', stimulus:null,
+      question:"Penggunaan kata baku yang tepat terdapat pada kalimat...",
+      options:[{k:'A',t:'Ia menganalisa data penelitian dengan cermat'},{k:'B',t:'Guru itu memberi nasehat kepada siswanya'},{k:'C',t:'Kami akan mempraktikkan teori yang telah dipelajari'},{k:'D',t:'Ijasah adalah syarat utama pendaftaran kerja'},{k:'E',t:'Aktifitas belajar dilakukan secara daring'}],
+      answer:'C',
+      explanation:"Bentuk baku menurut KBBI: menganalisis (bukan menganalisa), nasihat (bukan nasehat), mempraktikkan sudah tepat, ijazah (bukan ijasah), aktivitas (bukan aktifitas)." },
+    { id:15, type:'pgk', level:'HOTS', stimulus:null,
+      question:"Manakah kalimat berikut yang mengandung kesalahan penggunaan konjungsi? (Jawaban bisa lebih dari satu)",
+      options:[{k:'A',t:'Karena hujan deras, sehingga pertandingan ditunda'},{k:'B',t:'Meskipun lelah, ia tetap menyelesaikan tugasnya'},{k:'C',t:'Walaupun sudah malam, tetapi ia belum juga pulang'},{k:'D',t:'Ayah bekerja keras agar anaknya bisa sekolah'},{k:'E',t:'Kondisi ekonomi keluarganya sangat sederhana'}],
+      answer:['A','C'],
+      explanation:"Kalimat A dan C menggunakan konjungsi berpasangan yang tidak baku (karena...sehingga; walaupun...tetapi). Konjungsi subordinatif seperti \"karena\" dan \"walaupun\" tidak boleh dipasangkan lagi dengan konjungsi lain dalam satu kalimat." },
+    { id:16, type:'bs', level:'HOTS', stimulus:null,
+      question:"Tentukan Benar atau Salah penerapan ejaan berikut!",
+      statements:[
+        {t:"Penulisan \"di kembangkan\" pada frasa \"sistem itu di kembangkan pemerintah\" sudah tepat", a:false},
+        {t:"Kata \"non-formal\" seharusnya ditulis \"nonformal\"", a:true},
+        {t:"Penulisan \"apotek\" merupakan bentuk baku", a:true},
+        {t:"Kata depan \"di\" pada \"di rumah\" ditulis terpisah karena menunjukkan tempat", a:true},
+      ],
+      explanation:"\"Dikembangkan\" sebagai awalan pembentuk kata kerja pasif ditulis serangkai, bukan \"di kembangkan\". Awalan \"non-\" ditulis serangkai menjadi \"nonformal\". \"Apotek\" adalah bentuk baku (bukan \"apotik\"). \"Di\" sebagai kata depan penunjuk tempat ditulis terpisah." },
+
+    // ---- E. Teks Negosiasi ----
+    { id:17, type:'pg', level:'LOTS',
+      stimulus:"Penjual: \"Batik ini harganya Rp250.000, Bu. Bahannya asli buatan tangan.\"\nPembeli: \"Wah, agak mahal ya, Pak. Bisa kurang jadi Rp180.000?\"\nPenjual: \"Belum bisa, Bu. Paling murah Rp220.000, sudah termasuk untung tipis.\"\nPembeli: \"Baik, Pak, saya setuju dengan harga Rp220.000 kalau boleh sekalian dibungkus rapi.\"\nPenjual: \"Baik, Bu, akan saya bungkuskan.\"",
+      question:"Struktur teks negosiasi yang tergambar pada bagian akhir dialog tersebut adalah...",
+      options:[{k:'A',t:'Orientasi'},{k:'B',t:'Pengajuan'},{k:'C',t:'Penawaran'},{k:'D',t:'Persetujuan'},{k:'E',t:'Penutup'}],
+      answer:'D',
+      explanation:"Bagian akhir dialog menunjukkan kesepakatan harga (Rp220.000) yang diterima kedua pihak, sehingga termasuk struktur persetujuan." },
+    { id:18, type:'pg', level:'MOTS', stimulus:null,
+      question:"Tujuan utama teks negosiasi tawar-menawar batik tersebut adalah...",
+      options:[{k:'A',t:'Menjelaskan proses pembuatan batik'},{k:'B',t:'Mencapai kesepakatan harga yang menguntungkan kedua pihak'},{k:'C',t:'Mempromosikan produk batik kepada pembeli'},{k:'D',t:'Menceritakan pengalaman berdagang penjual'},{k:'E',t:'Memberikan diskon besar kepada pembeli'}],
+      answer:'B',
+      explanation:"Inti negosiasi adalah proses tawar-menawar untuk mencapai kesepakatan harga yang dapat diterima kedua belah pihak." },
+    { id:19, type:'pgk', level:'HOTS', stimulus:null,
+      question:"Ciri kebahasaan teks negosiasi yang tampak dalam dialog batik tersebut meliputi... (Jawaban bisa lebih dari satu)",
+      options:[{k:'A',t:'Penggunaan kalimat persuasif untuk memengaruhi lawan bicara'},{k:'B',t:'Penggunaan kalimat langsung dalam bentuk dialog'},{k:'C',t:'Penggunaan bahasa yang santun dan kooperatif'},{k:'D',t:'Penggunaan kalimat perintah yang bersifat memaksa'},{k:'E',t:'Penggunaan alur mundur dalam penyampaian cerita'}],
+      answer:['A','B','C'],
+      explanation:"Dialog menggunakan kalimat persuasif (\"bahannya asli buatan tangan\"), berbentuk dialog langsung, dan bahasa santun-kooperatif. Tidak ada kalimat perintah memaksa maupun alur mundur." },
+    { id:20, type:'bs', level:'LOTS', stimulus:null,
+      question:"Tentukan Benar atau Salah pernyataan berikut berdasarkan dialog negosiasi batik!",
+      statements:[
+        {t:"Negosiasi tersebut berakhir dengan kesepakatan", a:true},
+        {t:"Harga awal yang ditawarkan penjual adalah Rp220.000", a:false},
+        {t:"Pembeli meminta agar barang dibungkus rapi", a:true},
+        {t:"Negosiasi tersebut gagal mencapai kesepakatan", a:false},
+      ],
+      explanation:"Harga awal yang ditawarkan penjual adalah Rp250.000, bukan Rp220.000 (harga tersebut adalah hasil kesepakatan akhir). Negosiasi berhasil, bukan gagal." },
+
+    // ---- F. Teks Editorial ----
+    { id:21, type:'pg', level:'HOTS',
+      stimulus:"Kenaikan harga bahan pokok menjelang hari besar keagamaan sudah menjadi fenomena tahunan yang seolah tak terelakkan. Pemerintah selalu berdalih bahwa kenaikan tersebut dipicu oleh tingginya permintaan pasar. Namun, alasan ini semestinya tidak menjadi pembenaran atas lemahnya pengawasan distribusi barang. Jika pengawasan dilakukan secara konsisten sepanjang tahun, bukan hanya menjelang hari besar, lonjakan harga yang memberatkan masyarakat kecil dapat dicegah. Pemerintah perlu lebih proaktif, bukan sekadar reaktif ketika harga sudah melambung tinggi.",
+      question:"Opini penulis yang paling tepat menggambarkan sikap kritis dalam teks editorial tersebut adalah...",
+      options:[{k:'A',t:'Kenaikan harga bahan pokok terjadi setiap tahun'},{k:'B',t:'Pemerintah seharusnya lebih proaktif mengawasi distribusi barang sepanjang tahun'},{k:'C',t:'Permintaan pasar meningkat menjelang hari besar keagamaan'},{k:'D',t:'Masyarakat kecil selalu dirugikan oleh kenaikan harga'},{k:'E',t:'Hari besar keagamaan menjadi penyebab utama inflasi'}],
+      answer:'B',
+      explanation:"Kalimat penutup teks secara eksplisit menyuarakan opini/kritik agar pemerintah lebih proaktif, yang merupakan inti sikap kritis penulis editorial." },
+    { id:22, type:'pg', level:'MOTS', stimulus:null,
+      question:"Fakta yang terdapat dalam teks editorial tentang kenaikan harga bahan pokok tersebut adalah...",
+      options:[{k:'A',t:'Pemerintah lemah dalam pengawasan'},{k:'B',t:'Kenaikan harga bahan pokok terjadi menjelang hari besar keagamaan'},{k:'C',t:'Pemerintah harus proaktif'},{k:'D',t:'Kebijakan pemerintah tidak berpihak pada rakyat'},{k:'E',t:'Distribusi barang perlu diperbaiki'}],
+      answer:'B',
+      explanation:"Pernyataan bahwa kenaikan harga terjadi menjelang hari besar keagamaan adalah fenomena yang dapat diverifikasi (fakta), sedangkan opsi lain merupakan opini/penilaian penulis." },
+    { id:23, type:'pgk', level:'HOTS', stimulus:null,
+      question:"Simpulan yang tepat berdasarkan teks editorial tersebut adalah... (Jawaban bisa lebih dari satu)",
+      options:[{k:'A',t:'Penulis mengkritik sikap reaktif pemerintah dalam mengatasi kenaikan harga'},{k:'B',t:'Penulis mendukung penuh kebijakan pemerintah saat ini'},{k:'C',t:'Penulis menyarankan pengawasan distribusi dilakukan sepanjang tahun'},{k:'D',t:'Penulis menyatakan bahwa kenaikan harga tidak dapat dicegah'},{k:'E',t:'Penulis menganggap permintaan pasar sebagai satu-satunya penyebab kenaikan harga'}],
+      answer:['A','C'],
+      explanation:"Teks jelas mengkritik sikap reaktif pemerintah (A) dan menyarankan pengawasan konsisten sepanjang tahun (C). Penulis justru menolak alasan permintaan pasar sebagai satu-satunya sebab, dan tidak mendukung penuh kebijakan pemerintah." },
+    { id:24, type:'bs', level:'MOTS', stimulus:null,
+      question:"Tentukan Benar atau Salah pernyataan berikut berdasarkan teks editorial tersebut!",
+      statements:[
+        {t:"Teks tersebut berisi kritik terhadap kinerja pengawasan pemerintah", a:true},
+        {t:"Penulis menyatakan kenaikan harga tidak dapat dihindari dengan alasan apa pun", a:false},
+        {t:"Teks tersebut merupakan bagian dari teks editorial/opini", a:true},
+        {t:"Penulis sepenuhnya menyalahkan masyarakat atas kenaikan harga", a:false},
+      ],
+      explanation:"Penulis justru berpendapat lonjakan harga dapat dicegah dengan pengawasan konsisten, dan sasaran kritiknya adalah pemerintah, bukan masyarakat." },
+
+    // ---- G. Hikayat ----
+    { id:25, type:'pg', level:'LOTS',
+      stimulus:"Hikayat Si Miskin (kutipan, disederhanakan)\n\nSebermula ada seorang raja bernama Maharaja Indera Dewa yang memerintah negeri antah berantah dengan adil dan bijaksana. Pada suatu hari, datanglah seorang pengemis miskin ke istana meminta sedekah. Baginda pun memerintahkan agar pengemis itu diberi makanan dan pakaian, sebab baginda amat kasihan melihat penderitaan rakyatnya. Maka masyhurlah nama baginda raja yang murah hati itu ke seluruh negeri.",
+      question:"Nilai yang terkandung dalam kutipan hikayat tersebut adalah...",
+      options:[{k:'A',t:'Nilai sosial berupa kepedulian terhadap sesama'},{k:'B',t:'Nilai ekonomi tentang perdagangan'},{k:'C',t:'Nilai pendidikan tentang belajar di istana'},{k:'D',t:'Nilai budaya tentang upacara adat'},{k:'E',t:'Nilai hukum tentang peraturan kerajaan'}],
+      answer:'A',
+      explanation:"Tindakan raja menolong pengemis miskin mencerminkan nilai sosial berupa kepedulian dan kasih sayang terhadap sesama." },
+    { id:26, type:'pg', level:'MOTS', stimulus:null,
+      question:"Karakteristik sastra Melayu klasik (hikayat) yang tampak pada kutipan \"Hikayat Si Miskin\" tersebut adalah...",
+      options:[{k:'A',t:'Menggunakan latar kehidupan modern'},{k:'B',t:'Bersifat istanasentris (berpusat pada kehidupan istana/raja)'},{k:'C',t:'Menggunakan bahasa gaul sehari-hari'},{k:'D',t:'Mengangkat tema percintaan remaja masa kini'},{k:'E',t:'Beralur maju-mundur yang kompleks'}],
+      answer:'B',
+      explanation:"Hikayat umumnya bersifat istanasentris karena tokoh dan latar cerita berpusat pada kehidupan raja dan istana, seperti tampak pada kutipan tersebut." },
+    { id:27, type:'pgk', level:'HOTS', stimulus:null,
+      question:"Ciri kebahasaan hikayat yang terdapat dalam kutipan \"Hikayat Si Miskin\" meliputi... (Jawaban bisa lebih dari satu)",
+      options:[{k:'A',t:'Penggunaan kata arkais seperti \"sebermula\" dan \"baginda\"'},{k:'B',t:'Penggunaan kalimat berupa formula pembuka cerita yang khas'},{k:'C',t:'Penggunaan bahasa gaul masa kini'},{k:'D',t:'Adanya unsur kesaktian tokoh yang mustahil secara logika'},{k:'E',t:'Penggunaan struktur dialog interaktif bergaya modern'}],
+      answer:['A','B'],
+      explanation:"Kutipan menampilkan kata arkais (\"sebermula\", \"baginda\") dan formula pembuka khas hikayat. Kutipan ini tidak menampilkan unsur kesaktian, bahasa gaul, maupun dialog modern." },
+    { id:28, type:'bs', level:'LOTS', stimulus:null,
+      question:"Tentukan Benar atau Salah pernyataan berikut berdasarkan kutipan \"Hikayat Si Miskin\"!",
+      statements:[
+        {t:"Tokoh raja dalam kutipan digambarkan sebagai sosok yang murah hati", a:true},
+        {t:"Kutipan tersebut menceritakan kehidupan pengemis yang kaya raya", a:false},
+        {t:"Latar cerita adalah sebuah kerajaan", a:true},
+        {t:"Hikayat termasuk karya sastra modern", a:false},
+      ],
+      explanation:"Hikayat merupakan karya sastra Melayu klasik, bukan sastra modern. Kutipan tidak menceritakan pengemis kaya raya, melainkan pengemis miskin yang ditolong raja." },
+
+    // ---- H. Biografi ----
+    { id:29, type:'pg', level:'LOTS',
+      stimulus:"B.J. Habibie, presiden ketiga Republik Indonesia, dikenal sebagai sosok jenius di bidang teknologi penerbangan. Sejak muda, ia menunjukkan minat besar terhadap dunia pesawat terbang. Setelah menempuh pendidikan di Jerman, ia berhasil merumuskan berbagai teori penting dalam bidang aerodinamika, salah satunya dikenal dengan istilah 'Faktor Habibie'. Selain berprestasi di bidang teknologi, Habibie juga dikenal sebagai pemimpin yang membawa perubahan besar bagi demokrasi Indonesia pada masa awal reformasi.",
+      question:"Keteladanan tokoh yang dapat dipetik dari kutipan biografi B.J. Habibie tersebut adalah...",
+      options:[{k:'A',t:'Ketekunan dalam mengembangkan ilmu pengetahuan hingga berprestasi di bidang teknologi'},{k:'B',t:'Kekayaan yang diwariskan dari keluarga'},{k:'C',t:'Ketenaran sebagai tokoh politik semata'},{k:'D',t:'Kepandaian berbicara di depan umum'},{k:'E',t:'Keberhasilan dalam bidang olahraga'}],
+      answer:'A',
+      explanation:"Teks menekankan ketekunan Habibie mengembangkan ilmu di bidang teknologi penerbangan hingga melahirkan teori penting, sehingga inilah keteladanan utamanya." },
+    { id:30, type:'pg', level:'HOTS', stimulus:null,
+      question:"Hubungan sebab akibat yang tepat berdasarkan kutipan biografi B.J. Habibie tersebut adalah...",
+      options:[{k:'A',t:'Habibie menjadi presiden karena kekayaannya'},{k:'B',t:'Ketekunan Habibie belajar di Jerman menyebabkan lahirnya teori \'Faktor Habibie\''},{k:'C',t:'Habibie terkenal karena sering tampil di televisi'},{k:'D',t:'Reformasi terjadi karena keahlian Habibie di bidang penerbangan'},{k:'E',t:'Habibie dikenal dunia karena jabatannya sebagai presiden semata'}],
+      answer:'B',
+      explanation:"Teks menyatakan bahwa setelah menempuh pendidikan di Jerman, ia berhasil merumuskan teori 'Faktor Habibie', menunjukkan hubungan sebab (pendidikan/ketekunan) dan akibat (lahirnya teori)." },
+    { id:31, type:'bs', level:'MOTS', stimulus:null,
+      question:"Tentukan Benar atau Salah pernyataan berikut berdasarkan kutipan biografi B.J. Habibie!",
+      statements:[
+        {t:"Habibie dikenal ahli di bidang aerodinamika", a:true},
+        {t:"Habibie menempuh pendidikan tinggi di Amerika Serikat", a:false},
+        {t:"\"Faktor Habibie\" adalah istilah dalam bidang penerbangan", a:true},
+        {t:"Habibie hanya berperan dalam bidang teknologi, tidak dalam pemerintahan", a:false},
+      ],
+      explanation:"Teks menyebutkan Habibie menempuh pendidikan di Jerman (bukan Amerika Serikat), dan ia juga berperan besar dalam pemerintahan sebagai presiden ketiga RI." },
+
+    // ---- I. EYD / Ejaan ----
+    { id:32, type:'pg', level:'LOTS', stimulus:null,
+      question:"Penulisan judul karya tulis yang tepat sesuai kaidah EYD adalah...",
+      options:[{k:'A',t:'Pengaruh Media Sosial terhadap Prestasi Belajar Siswa'},{k:'B',t:'pengaruh media sosial Terhadap prestasi Belajar siswa'},{k:'C',t:'Pengaruh media Sosial Terhadap Prestasi belajar Siswa'},{k:'D',t:'PENGARUH Media Sosial terhadap PRESTASI Belajar Siswa'},{k:'E',t:'Pengaruh media sosial terhadap prestasi belajar Siswa'}],
+      answer:'A',
+      explanation:"Kaidah penulisan judul: setiap kata diawali huruf kapital kecuali kata tugas (seperti \"terhadap\") yang tidak terletak di awal judul. Opsi A sudah konsisten menerapkan kaidah tersebut." },
+    { id:33, type:'pg', level:'MOTS', stimulus:null,
+      question:"Penulisan huruf kapital yang tepat terdapat pada kalimat...",
+      options:[{k:'A',t:'Dia berasal dari suku jawa yang tinggal di Pulau bali'},{k:'B',t:'Presiden joko widodo meresmikan jalan tol tersebut'},{k:'C',t:'Ia belajar Bahasa Indonesia dan Matematika di sekolah'},{k:'D',t:'Setiap hari raya Idulfitri, keluarga kami berkumpul di rumah nenek'},{k:'E',t:'bulan Ramadan adalah bulan penuh berkah bagi umat islam'}],
+      answer:'D',
+      explanation:"Nama hari besar keagamaan seperti \"Idulfitri\" ditulis dengan huruf kapital pada kalimat D. Opsi lain salah karena nama suku (Jawa), nama diri (Joko Widodo), nama agama (Islam) tidak dikapitalkan, atau justru mengapitalkan mata pelajaran yang tidak selalu tepat sesuai konteksnya." },
+    { id:34, type:'pgk', level:'HOTS', stimulus:null,
+      question:"Manakah penulisan kata serapan berikut yang sudah tepat sesuai kaidah bahasa Indonesia? (Jawaban bisa lebih dari satu)",
+      options:[{k:'A',t:'Kualitas'},{k:'B',t:'Kwalitas'},{k:'C',t:'Sistem'},{k:'D',t:'Sistim'},{k:'E',t:'Konsekuen'}],
+      answer:['A','C','E'],
+      explanation:"Bentuk baku menurut KBBI adalah \"kualitas\" (bukan \"kwalitas\"), \"sistem\" (bukan \"sistim\"), dan \"konsekuen\" sudah tepat." },
+    { id:35, type:'bs', level:'MOTS', stimulus:null,
+      question:"Tentukan Benar atau Salah pernyataan berikut tentang penggunaan tanda baca!",
+      statements:[
+        {t:"Tanda titik dua digunakan sebelum rincian dalam kalimat", a:true},
+        {t:"Tanda hubung (-) digunakan untuk memisahkan anak kalimat dan induk kalimat", a:false},
+        {t:"Huruf miring digunakan untuk menuliskan judul buku dalam kalimat", a:true},
+        {t:"Tanda petik dua digunakan untuk menulis judul bab dalam karangan sendiri", a:false},
+      ],
+      explanation:"Tanda koma, bukan tanda hubung, yang umum memisahkan anak kalimat dan induk kalimat. Tanda petik dua digunakan untuk kutipan langsung, bukan judul bab dalam karangan sendiri (judul bab biasanya menggunakan huruf miring atau tanpa tanda apa pun tergantung konteks)." },
+
+    // ---- J. Teks Laporan Hasil Observasi ----
+    { id:36, type:'pg', level:'LOTS',
+      stimulus:"Kelelawar merupakan satu-satunya mamalia yang mampu terbang secara aktif. Hewan ini tergolong dalam ordo Chiroptera dan tersebar di hampir seluruh belahan dunia kecuali daerah kutub. Kelelawar memiliki kemampuan ekolokasi, yaitu memancarkan gelombang suara berfrekuensi tinggi untuk mendeteksi keberadaan mangsa maupun rintangan di sekitarnya. Berdasarkan jenis makanannya, kelelawar dapat dikelompokkan menjadi pemakan buah, pemakan serangga, dan pemakan darah.",
+      question:"Objek yang dibahas dalam teks laporan hasil observasi tersebut adalah...",
+      options:[{k:'A',t:'Ekosistem hutan tropis'},{k:'B',t:'Kelelawar sebagai satu-satunya mamalia terbang'},{k:'C',t:'Jenis-jenis burung pemakan serangga'},{k:'D',t:'Proses ekolokasi pada lumba-lumba'},{k:'E',t:'Persebaran hewan di kutub'}],
+      answer:'B',
+      explanation:"Seluruh isi teks berfokus membahas kelelawar, mulai dari klasifikasi, kemampuan ekolokasi, hingga jenis makanannya." },
+    { id:37, type:'pg', level:'MOTS', stimulus:null,
+      question:"Struktur teks yang tampak pada kutipan laporan hasil observasi tentang kelelawar tersebut adalah bagian...",
+      options:[{k:'A',t:'Pernyataan umum/klasifikasi'},{k:'B',t:'Deskripsi manfaat'},{k:'C',t:'Simpulan'},{k:'D',t:'Orientasi'},{k:'E',t:'Koda'}],
+      answer:'A',
+      explanation:"Kutipan berisi definisi dan klasifikasi umum tentang kelelawar (ordo Chiroptera, persebaran, dan pengelompokan jenis), sehingga termasuk bagian pernyataan umum/klasifikasi." },
+    { id:38, type:'pgk', level:'HOTS', stimulus:null,
+      question:"Informasi yang sesuai dengan isi teks laporan hasil observasi tentang kelelawar tersebut adalah... (Jawaban bisa lebih dari satu)",
+      options:[{k:'A',t:'Kelelawar mampu mendeteksi mangsa dengan gelombang suara'},{k:'B',t:'Kelelawar hanya ditemukan di wilayah kutub'},{k:'C',t:'Kelelawar tergolong ordo Chiroptera'},{k:'D',t:'Semua kelelawar hanya memakan buah-buahan'},{k:'E',t:'Kelelawar dikelompokkan berdasarkan jenis makanannya'}],
+      answer:['A','C','E'],
+      explanation:"Teks menyatakan kelelawar tersebar di hampir seluruh dunia kecuali kutub (bukan hanya di kutub), dan tidak semua kelelawar pemakan buah—ada juga pemakan serangga dan darah." },
+
+    // ---- K. Drama ----
+    { id:39, type:'pg', level:'LOTS',
+      stimulus:"Ayah: (duduk termenung) \"Kenapa kau pulang selarut ini, Nak?\"\nAnak: \"Maaf, Yah, tadi saya membantu teman yang kesulitan di jalan.\"\nAyah: (menghela napas, lalu tersenyum) \"Baiklah, lain kali kabari Ayah, ya. Ayah hanya khawatir.\"\nAnak: \"Baik, Yah, saya janji.\"",
+      question:"Watak tokoh Ayah dalam kutipan drama tersebut adalah...",
+      options:[{k:'A',t:'Keras dan pemarah'},{k:'B',t:'Perhatian dan penyayang'},{k:'C',t:'Acuh tak acuh'},{k:'D',t:'Tegas tanpa kompromi'},{k:'E',t:'Pendiam dan tertutup'}],
+      answer:'B',
+      explanation:"Meski awalnya menunjukkan kekhawatiran, Ayah akhirnya tersenyum dan berkata \"Ayah hanya khawatir\", menunjukkan sikap perhatian dan penyayang, bukan kemarahan." },
+    { id:40, type:'pg', level:'MOTS', stimulus:null,
+      question:"Petunjuk lakuan (kramagung) yang terdapat dalam kutipan drama tersebut ditunjukkan oleh...",
+      options:[{k:'A',t:'"Kenapa kau pulang selarut ini, Nak?"'},{k:'B',t:'(duduk termenung) dan (menghela napas, lalu tersenyum)'},{k:'C',t:'"Baik, Yah, saya janji."'},{k:'D',t:'"Maaf, Yah, tadi saya membantu teman..."'},{k:'E',t:'"Baiklah, lain kali kabari Ayah, ya."'}],
+      answer:'B',
+      explanation:"Kramagung adalah petunjuk lakuan/tindakan tokoh yang biasanya ditulis dalam tanda kurung, seperti \"(duduk termenung)\" dan \"(menghela napas, lalu tersenyum)\"." },
+    { id:41, type:'bs', level:'LOTS', stimulus:null,
+      question:"Tentukan Benar atau Salah pernyataan berikut berdasarkan kutipan drama tersebut!",
+      statements:[
+        {t:"Konflik dalam kutipan drama tersebut tergolong konflik batin yang berat", a:false},
+        {t:"Tokoh Anak meminta maaf kepada Ayah", a:true},
+        {t:"Latar waktu kutipan tersebut adalah malam hari", a:true},
+        {t:"Ayah dalam kutipan tersebut memarahi anaknya habis-habisan", a:false},
+      ],
+      explanation:"Konflik dalam kutipan tergolong ringan (kesalahpahaman kecil), bukan konflik batin berat. Frasa \"pulang selarut ini\" menyiratkan latar waktu malam hari. Ayah tidak memarahi, melainkan menasihati dengan lembut." },
+
+    // ---- L. Proposal ----
+    { id:42, type:'pg', level:'LOTS',
+      stimulus:"Kegiatan Bakti Sosial dalam rangka memperingati Hari Sumpah Pemuda akan dilaksanakan oleh OSIS SMA Nusantara dengan tujuan menumbuhkan rasa kepedulian sosial siswa terhadap masyarakat sekitar. Kegiatan ini meliputi pembagian sembako, pemeriksaan kesehatan gratis, dan lomba kreativitas untuk anak-anak di lingkungan sekolah.",
+      question:"Bagian proposal yang sesuai dengan kutipan tersebut adalah...",
+      options:[{k:'A',t:'Latar belakang dan tujuan kegiatan'},{k:'B',t:'Anggaran biaya kegiatan'},{k:'C',t:'Susunan kepanitiaan'},{k:'D',t:'Jadwal pelaksanaan kegiatan'},{k:'E',t:'Penutup proposal'}],
+      answer:'A',
+      explanation:"Kutipan menjelaskan alasan/rangka kegiatan diselenggarakan dan tujuannya (menumbuhkan kepedulian sosial), sehingga termasuk bagian latar belakang dan tujuan." },
+    { id:43, type:'pg', level:'MOTS', stimulus:null,
+      question:"Tujuan penulisan proposal pada umumnya adalah...",
+      options:[{k:'A',t:'Menceritakan pengalaman pribadi penulis'},{k:'B',t:'Memberikan gambaran rinci dan permohonan izin/dukungan atas suatu rencana kegiatan'},{k:'C',t:'Menghibur pembaca dengan cerita fiktif'},{k:'D',t:'Menyajikan data statistik semata'},{k:'E',t:'Menjelaskan biografi seseorang'}],
+      answer:'B',
+      explanation:"Proposal bertujuan memaparkan rencana kegiatan secara rinci sekaligus memohon izin, dukungan, atau persetujuan dari pihak terkait." },
+    { id:44, type:'pgk', level:'HOTS', stimulus:null,
+      question:"Unsur-unsur yang umumnya terdapat dalam sebuah proposal kegiatan meliputi... (Jawaban bisa lebih dari satu)",
+      options:[{k:'A',t:'Latar belakang kegiatan'},{k:'B',t:'Tujuan kegiatan'},{k:'C',t:'Anggaran biaya'},{k:'D',t:'Sinopsis novel'},{k:'E',t:'Susunan acara/kegiatan'}],
+      answer:['A','B','C','E'],
+      explanation:"Proposal kegiatan umumnya memuat latar belakang, tujuan, anggaran biaya, dan susunan acara. Sinopsis novel bukan bagian dari proposal kegiatan." },
+    { id:45, type:'bs', level:'MOTS', stimulus:null,
+      question:"Tentukan Benar atau Salah pernyataan berikut berdasarkan kutipan proposal kegiatan bakti sosial tersebut!",
+      statements:[
+        {t:"Kegiatan tersebut diselenggarakan oleh OSIS SMA Nusantara", a:true},
+        {t:"Kegiatan tersebut bertujuan untuk mencari keuntungan finansial", a:false},
+        {t:"Salah satu rangkaian kegiatan adalah pemeriksaan kesehatan gratis", a:true},
+        {t:"Proposal tersebut dibuat dalam rangka memperingati Hari Kemerdekaan", a:false},
+      ],
+      explanation:"Kegiatan bertujuan sosial (kepedulian), bukan mencari keuntungan finansial. Kegiatan ini diselenggarakan dalam rangka memperingati Hari Sumpah Pemuda, bukan Hari Kemerdekaan." },
+  ];
+
+  const TOTAL_TIME = 90 * 60; // 90 menit
+  const TYPE_LABEL = { pg:'Pilihan Ganda', pgk:'PG Kompleks', bs:'Benar/Salah' };
+  const LEVEL_LABEL = { LOTS:'LOTS', MOTS:'MOTS', HOTS:'HOTS' };
+
+  /* ======================= STATE ======================= */
+  let state = {
+    screen: 'start', // start | exam | result
+    name: '',
+    current: 0,
+    answers: {}, // id -> answer
+    timeLeft: TOTAL_TIME,
+    timerId: null,
+    navOpen: false,
+    syncStatus: 'idle', // idle | sending | sent | error
+  };
+
+  const app = document.getElementById('app');
+
+  function fmtTime(s){
+    const m = Math.floor(s/60).toString().padStart(2,'0');
+    const sec = Math.floor(s%60).toString().padStart(2,'0');
+    return m+':'+sec;
+  }
+
+  function esc(str){
+    const d = document.createElement('div');
+    d.textContent = str;
+    return d.innerHTML;
+  }
+
+  /* ======================= START SCREEN ======================= */
+  function renderStart(){
+    const counts = { pg:0, pgk:0, bs:0 };
+    questions.forEach(q => counts[q.type]++);
+    app.innerHTML = `
+      <div class="stamp">TKA &middot; JENJANG SMA</div>
+      <h1 class="cover-title">Tes Kemampuan Akademik<br>Bahasa Indonesia</h1>
+      <p class="cover-sub">Latihan ujian berisi ${questions.length} soal dengan tiga jenis format resmi TKA — Pilihan Ganda, Pilihan Ganda Kompleks, dan Benar/Salah — mencakup jenjang kesulitan LOTS hingga HOTS.</p>
+
+      <div class="cover-meta">
+        <div class="meta-box"><div class="num">${questions.length}</div><div class="lbl">Total soal</div></div>
+        <div class="meta-box"><div class="num">${counts.pg}</div><div class="lbl">Pilihan Ganda</div></div>
+        <div class="meta-box"><div class="num">${counts.pgk}</div><div class="lbl">PG Kompleks</div></div>
+        <div class="meta-box"><div class="num">${counts.bs}</div><div class="lbl">Benar/Salah</div></div>
+        <div class="meta-box"><div class="num">90'</div><div class="lbl">Durasi ujian</div></div>
+      </div>
+
+      <div class="name-field">
+        <label for="nameInput">Nama peserta (opsional)</label>
+        <input id="nameInput" type="text" placeholder="Tulis namamu di sini" value="${esc(state.name)}">
+      </div>
+
+      <ul class="rules-list">
+        <li>Waktu pengerjaan 90 menit, berjalan otomatis sejak ujian dimulai.</li>
+        <li>Soal Pilihan Ganda Kompleks bisa memiliki lebih dari satu jawaban benar.</li>
+        <li>Soal Benar/Salah berisi beberapa pernyataan yang harus dinilai satu per satu.</li>
+        <li>Kamu dapat berpindah antarsoal secara bebas melalui panel navigasi.</li>
+        <li>Setelah "Selesai & Kumpulkan" ditekan, jawaban tidak dapat diubah lagi dan hasil akan otomatis dikirim ke spreadsheet.</li>
+      </ul>
+
+      <button class="btn-primary" id="startBtn">Mulai Ujian</button>
+    `;
+    document.getElementById('nameInput').addEventListener('input', e => state.name = e.target.value);
+    document.getElementById('startBtn').addEventListener('click', startExam);
+  }
+
+  function startExam(){
+    state.screen = 'exam';
+    state.current = 0;
+    state.answers = {};
+    state.timeLeft = TOTAL_TIME;
+    renderExam();
+    startTimer();
+  }
+
+  function startTimer(){
+    clearInterval(state.timerId);
+    state.timerId = setInterval(() => {
+      state.timeLeft--;
+      updateTimerDisplay();
+      if(state.timeLeft <= 0){
+        clearInterval(state.timerId);
+        finishExam();
+      }
+    }, 1000);
+  }
+
+  function updateTimerDisplay(){
+    const el = document.getElementById('timerDisplay');
+    if(!el) return;
+    el.textContent = fmtTime(Math.max(0,state.timeLeft));
+    el.classList.toggle('low', state.timeLeft <= 300);
+  }
+
+  /* ======================= EXAM SCREEN ======================= */
+  function isAnswered(q){
+    const a = state.answers[q.id];
+    if(a === undefined || a === null) return false;
+    if(q.type === 'pg') return !!a;
+    if(q.type === 'pgk') return Array.isArray(a) && a.length > 0;
+    if(q.type === 'bs') return a && Object.keys(a).length === q.statements.length;
+    return false;
+  }
+
+  function renderExam(){
+    const answeredCount = questions.filter(isAnswered).length;
+    app.innerHTML = `
+      <div class="exam-header">
+        <div class="exam-header-row">
+          <div>
+            <div class="eyebrow">TKA BAHASA INDONESIA</div>
+            <div class="progress-text">Terjawab ${answeredCount} / ${questions.length} soal</div>
+          </div>
+          <div style="display:flex; align-items:center; gap:10px;">
+            <button class="btn-ghost nav-toggle" id="navToggleBtn" type="button">Daftar Soal</button>
+            <div class="timer" id="timerDisplay">${fmtTime(state.timeLeft)}</div>
+          </div>
+        </div>
+      </div>
+      <div class="exam-body">
+        <div id="questionSlot"></div>
+        <div class="navigator ${state.navOpen ? 'open' : ''}" id="navigatorPanel">
+          <h3>Daftar Soal</h3>
+          <div class="nav-grid" id="navGrid"></div>
+          <div class="nav-legend">
+            <div><span class="legend-dot" style="background:var(--accent-soft); border:1.5px solid var(--accent);"></span>Terjawab</div>
+            <div><span class="legend-dot" style="background:transparent; border:1.5px solid var(--line);"></span>Belum dijawab</div>
+            <div><span class="legend-dot" style="background:var(--accent);"></span>Soal aktif</div>
+          </div>
+          <button class="btn-primary" id="finishBtn" style="width:100%; margin-top:16px;">Selesai &amp; Kumpulkan</button>
+        </div>
+      </div>
+    `;
+    document.getElementById('navToggleBtn').addEventListener('click', () => {
+      state.navOpen = !state.navOpen;
+      document.getElementById('navigatorPanel').classList.toggle('open', state.navOpen);
+    });
+    document.getElementById('finishBtn').addEventListener('click', confirmFinish);
+    renderNavGrid();
+    renderQuestion();
+  }
+
+  function renderNavGrid(){
+    const grid = document.getElementById('navGrid');
+    if(!grid) return;
+    grid.innerHTML = questions.map((q,i) => {
+      const cls = ['nav-dot'];
+      if(i === state.current) cls.push('current');
+      else if(isAnswered(q)) cls.push('answered');
+      return `<button type="button" class="${cls.join(' ')}" data-idx="${i}">${q.id}</button>`;
+    }).join('');
+    grid.querySelectorAll('.nav-dot').forEach(btn => {
+      btn.addEventListener('click', () => {
+        state.current = parseInt(btn.dataset.idx, 10);
+        state.navOpen = false;
+        renderExam();
+      });
+    });
+  }
+
+  function renderQuestion(){
+    const slot = document.getElementById('questionSlot');
+    const q = questions[state.current];
+    const levelClass = 'level-' + q.level.toLowerCase();
+
+    let bodyHtml = '';
+    if(q.stimulus){
+      bodyHtml += `<div class="stimulus">${esc(q.stimulus)}</div>`;
+    }
+    bodyHtml += `<div class="qtext">${q.id}. ${esc(q.question)}</div>`;
+
+    if(q.type === 'pg'){
+      const sel = state.answers[q.id];
+      bodyHtml += `<div class="options" id="optWrap">` + q.options.map(o => `
+        <button type="button" class="opt ${sel===o.k?'selected':''}" data-key="${o.k}">
+          <span class="marker">${o.k}</span><span>${esc(o.t)}</span>
+        </button>
+      `).join('') + `</div>`;
+    } else if(q.type === 'pgk'){
+      const sel = state.answers[q.id] || [];
+      bodyHtml += `<div class="options" id="optWrap">` + q.options.map(o => `
+        <button type="button" class="opt pgk ${sel.includes(o.k)?'selected':''}" data-key="${o.k}">
+          <span class="marker">${sel.includes(o.k)?'&#10003;':o.k}</span><span>${esc(o.t)}</span>
+        </button>
+      `).join('') + `</div>`;
+    } else if(q.type === 'bs'){
+      const sel = state.answers[q.id] || {};
+      bodyHtml += `<table class="bs-table"><tbody>` + q.statements.map((s,i) => `
+        <tr class="bs-row">
+          <td class="stmt">${i+1}. ${esc(s.t)}</td>
+          <td>
+            <div class="bs-btns">
+              <button type="button" class="bs-btn b ${sel[i]===true?'active':''}" data-i="${i}" data-v="true">Benar</button>
+              <button type="button" class="bs-btn s ${sel[i]===false?'active':''}" data-i="${i}" data-v="false">Salah</button>
+            </div>
+          </td>
+        </tr>
+      `).join('') + `</tbody></table>`;
+    }
+
+    slot.innerHTML = `
+      <div class="qcard">
+        <div class="qtags">
+          <span class="tag type">${TYPE_LABEL[q.type]}</span>
+          <span class="tag ${levelClass}">${LEVEL_LABEL[q.level]}</span>
+        </div>
+        ${bodyHtml}
+        <div class="qfooter">
+          <button class="btn-ghost" id="prevBtn" ${state.current===0?'disabled':''}>&larr; Sebelumnya</button>
+          <div class="right">
+            ${state.current === questions.length-1
+              ? '<button class="btn-primary" id="nextFinishBtn">Selesai &amp; Kumpulkan</button>'
+              : '<button class="btn-primary" id="nextBtn">Selanjutnya &rarr;</button>'}
+          </div>
+        </div>
+      </div>
+    `;
+
+    // wire interactions
+    if(q.type === 'pg'){
+      slot.querySelectorAll('#optWrap .opt').forEach(btn => {
+        btn.addEventListener('click', () => {
+          state.answers[q.id] = btn.dataset.key;
+          renderQuestion();
+          renderNavGrid();
+        });
+      });
+    } else if(q.type === 'pgk'){
+      slot.querySelectorAll('#optWrap .opt').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const cur = new Set(state.answers[q.id] || []);
+          const k = btn.dataset.key;
+          if(cur.has(k)) cur.delete(k); else cur.add(k);
+          state.answers[q.id] = Array.from(cur);
+          renderQuestion();
+          renderNavGrid();
+        });
+      });
+    } else if(q.type === 'bs'){
+      slot.querySelectorAll('.bs-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const i = parseInt(btn.dataset.i, 10);
+          const v = btn.dataset.v === 'true';
+          const cur = Object.assign({}, state.answers[q.id] || {});
+          cur[i] = v;
+          state.answers[q.id] = cur;
+          renderQuestion();
+          renderNavGrid();
+        });
+      });
+    }
+
+    const prevBtn = document.getElementById('prevBtn');
+    if(prevBtn) prevBtn.addEventListener('click', () => { state.current--; renderQuestion(); renderNavGrid(); window.scrollTo({top:0, behavior:'smooth'}); });
+    const nextBtn = document.getElementById('nextBtn');
+    if(nextBtn) nextBtn.addEventListener('click', () => { state.current++; renderQuestion(); renderNavGrid(); window.scrollTo({top:0, behavior:'smooth'}); });
+    const nextFinishBtn = document.getElementById('nextFinishBtn');
+    if(nextFinishBtn) nextFinishBtn.addEventListener('click', confirmFinish);
+  }
+
+  function confirmFinish(){
+    const answeredCount = questions.filter(isAnswered).length;
+    const remaining = questions.length - answeredCount;
+    const msg = remaining > 0
+      ? `Masih ada ${remaining} soal yang belum dijawab lengkap. Yakin ingin mengumpulkan sekarang?`
+      : `Semua soal sudah dijawab. Kumpulkan jawaban sekarang?`;
+    if(window.confirm(msg)){
+      finishExam();
+    }
+  }
+
+  function finishExam(){
+    clearInterval(state.timerId);
+    state.screen = 'result';
+    renderResult();
+    window.scrollTo({top:0, behavior:'smooth'});
+  }
+
+  /* ======================= SCORING ======================= */
+  function scoreQuestion(q){
+    const a = state.answers[q.id];
+    if(q.type === 'pg'){
+      return { earned: a === q.answer ? 1 : 0, max: 1, verdict: a === q.answer ? 'correct' : 'wrong' };
+    }
+    if(q.type === 'pgk'){
+      if(!a || a.length === 0) return { earned: 0, max: 1, verdict: 'wrong' };
+      const sel = [...a].sort().join(',');
+      const cor = [...q.answer].sort().join(',');
+      return { earned: sel === cor ? 1 : 0, max: 1, verdict: sel === cor ? 'correct' : 'wrong' };
+    }
+    if(q.type === 'bs'){
+      if(!a) return { earned: 0, max: 1, verdict: 'wrong' };
+      let correctCount = 0;
+      q.statements.forEach((s,i) => { if(a[i] === s.a) correctCount++; });
+      const frac = correctCount / q.statements.length;
+      let verdict = 'wrong';
+      if(frac === 1) verdict = 'correct';
+      else if(frac > 0) verdict = 'partial';
+      return { earned: frac, max: 1, verdict };
+    }
+  }
+
+  /* ======================= INTEGRASI SPREADSHEET ======================= */
+  // Membangun ringkasan jawaban per soal untuk dikirim ke spreadsheet.
+  function buildDetailJawaban(results){
+    return results.map(({q, r}) => {
+      const a = state.answers[q.id];
+      let jawabanSiswa;
+      if(q.type === 'pg') jawabanSiswa = a || '';
+      else if(q.type === 'pgk') jawabanSiswa = (a || []).slice().sort().join(',');
+      else if(q.type === 'bs') jawabanSiswa = Object.keys(a || {}).map(i => `${Number(i)+1}:${a[i] ? 'B' : 'S'}`).join(';');
+      return {
+        nomor: q.id,
+        tipe: q.type,
+        jawabanSiswa,
+        benar: r.verdict === 'correct' ? 1 : (r.verdict === 'partial' ? r.earned : 0)
+      };
+    });
+  }
+
+  // Mengirim hasil ujian ke Google Spreadsheet melalui Web App Apps Script.
+  // mode "no-cors" membuat fetch tidak bisa membaca isi respons asli, jadi
+  // .then() akan selalu terpanggil walau request gagal di sisi server —
+  // karena itu status "terkirim" di sini hanya menandakan request sudah dikirim,
+  // bukan jaminan data benar-benar tersimpan di spreadsheet.
+  function kirimHasilUjian(hasilUjian){
+    if(!SPREADSHEET_ENABLED || !SPREADSHEET_URL){
+      return Promise.resolve({ sent:false, reason:'disabled' });
+    }
+    const payload = {
+      nama: hasilUjian.nama,
+      jumlahBenar: hasilUjian.benar,
+      totalSoal: hasilUjian.totalSoal,
+      nilai: hasilUjian.nilai,
+      waktuKumpul: new Date().toISOString(),
+      detailJawaban: hasilUjian.jawabanSiswa
+    };
+    return fetch(SPREADSHEET_URL, {
+      method: "POST",
+      mode: "no-cors",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload)
+    })
+    .then(() => ({ sent:true }))
+    .catch((error) => {
+      console.error("Gagal mengirim data ke spreadsheet:", error);
+      return { sent:false, reason:'network', error };
+    });
+  }
+
+  function updateSyncStatusUI(){
+    const el = document.getElementById('syncStatus');
+    if(!el) return;
+    if(state.syncStatus === 'sending'){
+      el.textContent = 'Mengirim hasil ke spreadsheet…';
+      el.className = 'sync-status';
+    } else if(state.syncStatus === 'sent'){
+      el.textContent = 'Hasil sudah dikirim ke spreadsheet.';
+      el.className = 'sync-status ok';
+    } else if(state.syncStatus === 'error'){
+      el.textContent = 'Gagal mengirim ke spreadsheet (periksa koneksi atau URL Apps Script).';
+      el.className = 'sync-status err';
+    } else {
+      el.textContent = '';
+      el.className = 'sync-status';
+    }
+  }
+
+  function renderResult(){
+    let totalEarned = 0;
+    const byType = { pg:{e:0,m:0}, pgk:{e:0,m:0}, bs:{e:0,m:0} };
+    const byLevel = { LOTS:{e:0,m:0}, MOTS:{e:0,m:0}, HOTS:{e:0,m:0} };
+    const results = questions.map(q => {
+      const r = scoreQuestion(q);
+      totalEarned += r.earned;
+      byType[q.type].e += r.earned; byType[q.type].m += r.max;
+      byLevel[q.level].e += r.earned; byLevel[q.level].m += r.max;
+      return { q, r };
+    });
+    const pct = Math.round((totalEarned / questions.length) * 1000) / 10;
+
+    const bdHtml = (labelMap, obj) => Object.keys(obj).map(k => {
+      const p = obj[k].m ? Math.round((obj[k].e/obj[k].m)*100) : 0;
+      return `<div class="bd-card">
+        <h4>${labelMap[k]}</h4>
+        <div class="bar-bg"><div class="bar-fill" style="width:${p}%"></div></div>
+        <div class="bd-pct">${p}%</div>
+      </div>`;
+    }).join('');
+
+    const reviewHtml = results.map(({q,r}) => {
+      const verdictLabel = r.verdict === 'correct' ? 'Benar' : (r.verdict === 'partial' ? 'Sebagian Benar' : 'Kurang Tepat');
+      let userAnsHtml = '';
+      let correctAnsHtml = '';
+      if(q.type === 'pg'){
+        const a = state.answers[q.id];
+        const userOpt = q.options.find(o => o.k === a);
+        const corOpt = q.options.find(o => o.k === q.answer);
+        userAnsHtml = `<div class="review-answer-row">Jawabanmu: <b>${a ? a+'. '+esc(userOpt.t) : 'Tidak dijawab'}</b></div>`;
+        correctAnsHtml = `<div class="review-answer-row">Kunci jawaban: <b>${q.answer}. ${esc(corOpt.t)}</b></div>`;
+      } else if(q.type === 'pgk'){
+        const a = state.answers[q.id] || [];
+        userAnsHtml = `<div class="review-answer-row">Jawabanmu: <b>${a.length ? a.slice().sort().join(', ') : 'Tidak dijawab'}</b></div>`;
+        correctAnsHtml = `<div class="review-answer-row">Kunci jawaban: <b>${[...q.answer].sort().join(', ')}</b></div>`;
+      } else if(q.type === 'bs'){
+        const a = state.answers[q.id] || {};
+        userAnsHtml = `<div class="review-answer-row">` + q.statements.map((s,i) => {
+          const ua = a[i];
+          const uaLabel = ua === true ? 'Benar' : (ua === false ? 'Salah' : '-');
+          const ok = ua === s.a;
+          return `<div>${i+1}. ${esc(s.t)} — Jawabanmu: <b style="color:${ok?'var(--accent)':'var(--wrong)'}">${uaLabel}</b> &middot; Kunci: <b>${s.a?'Benar':'Salah'}</b></div>`;
+        }).join('') + `</div>`;
+      }
+      return `
+        <div class="review-item">
+          <div class="review-head">
+            <span class="qnum">Soal ${q.id} &middot; ${TYPE_LABEL[q.type]} &middot; ${LEVEL_LABEL[q.level]}</span>
+            <span class="verdict ${r.verdict}">${verdictLabel}</span>
+          </div>
+          ${q.stimulus ? `<div class="stimulus">${esc(q.stimulus)}</div>` : ''}
+          <div class="qtext" style="font-size:15.5px;">${esc(q.question)}</div>
+          ${userAnsHtml}
+          ${correctAnsHtml}
+          <div class="review-explain"><b>Pembahasan:</b> ${esc(q.explanation)}</div>
+        </div>
+      `;
+    }).join('');
+
+    app.innerHTML = `
+      <div class="eyebrow">HASIL UJIAN</div>
+      <h1 class="cover-title" style="margin-bottom:20px;">${state.name ? esc(state.name) : 'Peserta'} — Bahasa Indonesia</h1>
+
+      <div class="score-hero">
+        <div class="score-num">${pct}</div>
+        <div class="score-label">dari skala 0–100 &middot; ${totalEarned.toFixed(1)} / ${questions.length} poin</div>
+        <div class="sync-status" id="syncStatus"></div>
+      </div>
+
+      <h3 style="margin-bottom:12px; font-size:16px;">Capaian per Jenis Soal</h3>
+      <div class="breakdown">${bdHtml(TYPE_LABEL, byType)}</div>
+
+      <h3 style="margin-bottom:12px; font-size:16px;">Capaian per Tingkat Kesulitan</h3>
+      <div class="breakdown">${bdHtml(LEVEL_LABEL, byLevel)}</div>
+
+      <div class="top-actions">
+        <button class="btn-primary" id="retryBtn">Ulangi Ujian</button>
+        <button class="btn-ghost" id="reviewJumpBtn">Lihat Pembahasan &darr;</button>
+      </div>
+
+      <h2 id="reviewSection" style="margin-bottom:16px; font-size:20px;">Pembahasan Lengkap</h2>
+      ${reviewHtml}
+
+      <div class="top-actions" style="margin-top:10px;">
+        <button class="btn-primary" id="retryBtn2">Ulangi Ujian</button>
+      </div>
+    `;
+    document.getElementById('retryBtn').addEventListener('click', restart);
+    document.getElementById('retryBtn2').addEventListener('click', restart);
+    document.getElementById('reviewJumpBtn').addEventListener('click', () => {
+      document.getElementById('reviewSection').scrollIntoView({behavior:'smooth', block:'start'});
+    });
+
+    // Kirim hasil ke spreadsheet secara otomatis begitu layar hasil tampil.
+    if(SPREADSHEET_ENABLED){
+      state.syncStatus = 'sending';
+      updateSyncStatusUI();
+      kirimHasilUjian({
+        nama: state.name || 'Tanpa Nama',
+        benar: totalEarned,
+        totalSoal: questions.length,
+        nilai: pct,
+        jawabanSiswa: buildDetailJawaban(results)
+      }).then((res) => {
+        state.syncStatus = res.sent ? 'sent' : 'error';
+        updateSyncStatusUI();
+      });
+    }
+  }
+
+  function restart(){
+    state = { screen:'start', name: state.name, current:0, answers:{}, timeLeft: TOTAL_TIME, timerId:null, navOpen:false, syncStatus:'idle' };
+    renderStart();
+    window.scrollTo({top:0, behavior:'smooth'});
+  }
+
+  renderStart();
+})();
+</script>
+</body>
+</html>
